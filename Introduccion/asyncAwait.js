@@ -24,8 +24,6 @@ const mostrarPosts = async() =>{
 };
 mostrarPosts();
 
-
-
 // si es exitosa llamamos al .then()
 /* console.log('Inica operacion');
 fetchPosts()
