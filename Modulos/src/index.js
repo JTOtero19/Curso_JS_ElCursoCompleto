@@ -7,4 +7,9 @@
 // console.log(`Mi nombre es ${datos.nombre}`);
 
 // default improts
-import obtener from "./defaultExport";
+// import obtener from "./defaultExport";
+
+
+// empty export
+import './emptyExport';
+import { correo } from './emptyExport';
