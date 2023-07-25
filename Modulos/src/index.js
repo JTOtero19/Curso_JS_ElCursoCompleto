@@ -3,4 +3,8 @@
 // console.log(obtenerPosts());
 
 
-import * as datos from "./namedExports";
+// import * as datos from "./namedExports";
+// console.log(`Mi nombre es ${datos.nombre}`);
+
+// default improts
+import obtener from "./defaultExport";

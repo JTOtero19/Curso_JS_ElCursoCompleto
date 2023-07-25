@@ -1,5 +1,3 @@
-'use strict';
-
 obtenerUsuario = () => {
   return {
     nombre: 'Carlos',
@@ -7,4 +5,4 @@ obtenerUsuario = () => {
   };
 };
 
-obtenerUsuario;
+export default obtenerUsuario;
