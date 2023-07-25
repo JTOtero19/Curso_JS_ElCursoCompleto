@@ -1,8 +1,10 @@
 'use strict';
 
-var carrito = () => {
-  console.log('Carrito 2');
+const nombre = 'Juan';
+
+const obtenerPosts = () => {
+    return ['Post 1', 'Post 2', 'Post 3'];
 };
 
-console.log('Archivo inicial');
-carrito();
+console.log(`Mi nombre es ${nombre}`);
+console.log(obtenerPosts());

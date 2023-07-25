@@ -1,4 +1,6 @@
-import carrito from './carrito.js';
+// import { nombre, obtenerPosts } from "./namedExports";
+// console.log(`Mi nombre es ${nombre}`);
+// console.log(obtenerPosts());
 
-console.log('Archivo inicial');
-carrito();
+
+import * as datos from "./namedExports";
