@@ -12,6 +12,7 @@
 
 /*
 Forma para obtener el usuario de las cookies
+Encontrar cookies
  */
 let usuario;
 const cookies = document.cookie.split('; ');
