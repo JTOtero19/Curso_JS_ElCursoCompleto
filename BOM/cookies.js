@@ -33,6 +33,3 @@ const cerrarSesion = () => {
     document.cookie = 'nombre=; expires=1 Jan 2022 01:00:00 UTC';
     console.log('Hasta luego');
 }
-if (condition) {
-
-};
