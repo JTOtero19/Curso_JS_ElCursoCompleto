@@ -18,6 +18,6 @@ def spin_words(input_word)
   result_word.join(' ')
 end
 
-input_word = "Yo sinceramente prefiero los completos italianos con mostaza"
+input_word = 'Yo sinceramente prefiero los completos italianos con mostaza, fact'
 output_string = spin_words(input_word)
 puts output_string
