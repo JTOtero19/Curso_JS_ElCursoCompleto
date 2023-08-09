@@ -6,7 +6,7 @@ def spin_words(input_word)
 
   # Luego se hacer un each a cada palabra escrita por el usuario
   words.each do |word|
-    #Que si la palabra tiene 5 o mas caracteres se va a aplicar el metdodo reverse y se guardara en result_word
+    # Que si la palabra tiene 5 o mas caracteres se va a aplicar el metdodo reverse y se guardara en result_word
     if word.length >= 5
       result_word << word.reverse
       # Si no cumple con la condicion, la palabra se guardara altiro en result_word
@@ -14,7 +14,7 @@ def spin_words(input_word)
       result_word << word
     end
   end
-# Finalmente unimos todas las palabras.
+  # Finalmente unimos todas las palabras.
   result_word.join(' ')
 end
 
