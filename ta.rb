@@ -1,6 +1,7 @@
 # Primero se crea una variable que contendra el codigo
 def spin_words(input_word)
-  # Luego en estas dos lineas se creara la palabra que contendra lo que el usuario escriba y un array vacio para guardar el resultado
+  # Luego en estas dos lineas se creara la palabra que contendra lo que el usuario escriba.
+  # y un array vacio para guardar el resultado
   words = input_word.split
   result_word = []
 
