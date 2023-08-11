@@ -11,3 +11,6 @@ colors[3] = 'Blue';
 console.log('El array tiene: ' + colors.length + ' colores')
 
 colors.push('Azul');
+
+// prueba 1
+let = 0;
