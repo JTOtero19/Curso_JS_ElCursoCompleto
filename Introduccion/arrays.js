@@ -15,5 +15,6 @@ colors.push('Azul');
 // prueba 1
 let = 0;
 const numero () => {
-  
+  numero = 0;
+  numero = numero++;
 }
