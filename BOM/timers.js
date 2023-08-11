@@ -30,3 +30,5 @@ const detener = () => {
     console.log('Deteniendo...');
     clearInterval(id);
 }
+
+// soy un asco

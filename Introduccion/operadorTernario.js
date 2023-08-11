@@ -17,4 +17,3 @@ const codigoDeAcceso = (boleto === 'vip') ? 'VIP-123-456' : 'REGULAR-000-1230';
 // Ejemplo #2
 boleto === 'vip' ? console.log('tu boelto es vip') : console.log('Tu boleto es regular');
 
-boleto === 'vip' ? return true : return false;
