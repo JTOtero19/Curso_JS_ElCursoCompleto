@@ -30,9 +30,3 @@ const detener = () => {
     console.log('Deteniendo...');
     clearInterval(id);
 }
-
-const futbol () => {
-  if(players >=7){
-    console.log('Hay suficientes jugadores');
-  }
-}
