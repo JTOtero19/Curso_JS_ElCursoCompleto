@@ -31,4 +31,6 @@ const detener = () => {
     clearInterval(id);
 }
 
-// soy un asco
+const futbol () => {
+  
+}
