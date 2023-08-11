@@ -32,5 +32,7 @@ const detener = () => {
 }
 
 const futbol () => {
-  
+  if(players >=7){
+    console.log('Hay suficientes jugadores');
+  }
 }
