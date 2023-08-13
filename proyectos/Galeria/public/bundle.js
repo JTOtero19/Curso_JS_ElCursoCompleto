@@ -471,13 +471,13 @@ categorias.forEach((categoria)=>{
 });
 
 const contenedorCategorias = document.getElementById('categorias');
-const galeria = document.getElementById('galeria');
+const galeria$2 = document.getElementById('galeria');
 
 contenedorCategorias.addEventListener('click', (e) => {
   e.preventDefault();
 
   if (e.target.closest('a')){
-      galeria.classList.add('galeria--active');
+      galeria$2.classList.add('galeria--active');
       document.body.style.overflow = 'hidden';
 
       const categoriaActiva = e.target.dataset.categoria;
@@ -489,9 +489,24 @@ contenedorCategorias.addEventListener('click', (e) => {
               <img class="galeria__carousel-image" src="${foto.ruta}" alt="" />
             </a>
         `;
-        galeria.querySelector('.galeria__carousel-slides').innerHTML += slide;
+        galeria$2.querySelector('.galeria__carousel-slides').innerHTML += slide;
       });
 
-      galeria.querySelector('.galeria__carousel-slide').classList.add('galeria__carousel-slide--active');
+      galeria$2.querySelector('.galeria__carousel-slide').classList.add('galeria__carousel-slide--active');
     }
+});
+
+const galeria$1 = document.getElementById('galeria');
+const cerrarGaleria = () => {
+  galeria$1.classList.remove('galeria--active');
+  document.body.style.overflow = '';
+};
+
+const galeria = document.getElementById('galeria');
+galeria.addEventListener('click', (e) => {
+  const boton = e.target.closest('button');
+  if (boton?.dataset.accion === 'cerrar-galeria'){
+    cerrarGaleria();
+  }
+
 });
