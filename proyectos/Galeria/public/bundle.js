@@ -470,6 +470,16 @@ categorias.forEach((categoria)=>{
   contenedorCategorias$1.append(nuevaCategoria);
 });
 
+const galeria$3 = document.getElementById('galeria');
+const cargarImagen = (id, nombre, ruta, descripcion) => {
+  galeria$3.querySelector('.galeria__imagen').src = ruta;
+  galeria$3.querySelector('.galeria__imagen').dataset.idImagen = id;
+  galeria$3.querySelector('.galeria__titulo').innerText = nombre;
+  galeria$3.querySelector('.galeria__descripcion-imagen-activa').innerText = descripcion;
+
+
+};
+
 const contenedorCategorias = document.getElementById('categorias');
 const galeria$2 = document.getElementById('galeria');
 
@@ -480,12 +490,16 @@ contenedorCategorias.addEventListener('click', (e) => {
       galeria$2.classList.add('galeria--active');
       document.body.style.overflow = 'hidden';
 
+
       const categoriaActiva = e.target.closest('a').dataset.categoria;
       const fotos = dataFotos.fotos[categoriaActiva];
       const carousel = galeria$2.querySelector('.galeria__carousel-slides');
 
+      const {id, nombre, ruta, descripcion} = fotos[0];
+      cargarImagen(id, nombre, ruta, descripcion);
+
       carousel.innerHTML = '';
-      
+
       fotos.forEach((foto) => {
         const slide = `
             <a href="#" class="galeria__carousel-slide">
