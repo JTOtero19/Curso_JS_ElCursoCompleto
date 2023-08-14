@@ -27,4 +27,38 @@ const cargarImagen = (id, nombre, ruta, descripcion) => {
 
 };
 
-export { cargarImagen };
+const cargarAnteriorSiguiente = (direccion) => {
+
+  //Poniendole funcionalidad a las flechas botones
+  const categoriaActual = galeria.dataset.categoria;
+  const fotos = data.fotos[categoriaActual];
+  const idImagenActual = parseInt(galeria.querySelector('.galeria__imagen').dataset.idImagen);
+  // Esto anterior es para que el valor del id sea un numero y no unda cadena de texto
+
+  //Recorrer imagens en busca del id de la imagenactual para obtener su index
+  let indexImagenActual;
+  fotos.forEach((foto, index) => {
+    if (foto.id === idImagenActual){
+      indexImagenActual = index;
+    }
+  });
+
+  if (direccion === 'siguiente'){
+    if (fotos[indexImagenActual + 1]){
+      // destructuramos para extraer solo estos valores
+      const {id, nombre, ruta, descripcion} = fotos[indexImagenActual + 1];
+      cargarImagen(id, nombre, ruta, descripcion);
+    }
+
+
+  } else if (direccion === 'anterior'){
+    // destructuramos para extraer solo estos valores
+    if (fotos[indexImagenActual - 1]){
+      // destructuramos para extraer solo estos valores
+      const {id, nombre, ruta, descripcion} = fotos[indexImagenActual - 1];
+      cargarImagen(id, nombre, ruta, descripcion);
+    }
+  }
+};
+
+export { cargarImagen, cargarAnteriorSiguiente };
