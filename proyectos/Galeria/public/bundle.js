@@ -1,6 +1,6 @@
 'use strict';
 
-var dataFotos = {
+var datos = {
 	fotos: {
 		america: [
 			{
@@ -431,7 +431,7 @@ var dataFotos = {
 	},
 };
 
-const { fotos } = dataFotos;
+const { fotos } = datos;
 
 var dataCategorias = {
 	categorias: [
@@ -493,7 +493,7 @@ contenedorCategorias.addEventListener('click', (e) => {
 
       const categoriaActiva = e.target.closest('a').dataset.categoria;
       galeria$2.dataset.categoria = categoriaActiva;
-      const fotos = dataFotos.fotos[categoriaActiva];
+      const fotos = datos.fotos[categoriaActiva];
       const carousel = galeria$2.querySelector('.galeria__carousel-slides');
 
       const {id, nombre, ruta, descripcion} = fotos[0];
@@ -521,9 +521,21 @@ const cerrarGaleria = () => {
 };
 
 const slideClick = (e) => {
-  e.target.dataset.id;
+  let ruta, nombre, descripcion;
+
+  const id = parseInt(e.target.dataset.id); // ya que tiene que se integer
   const galeria = document.getElementById('galeria');
-  galeria.dataset.categoria;
+  const categoriaActiva = galeria.dataset.categoria;
+
+  datos.fotos[categoriaActiva].forEach((foto) => {
+    if (foto.id === id){
+      ruta = foto.ruta;
+      nombre = foto.nombre;
+      descripcion = foto.descripcion;
+    }
+  });
+
+  cargarImagen(id, nombre, ruta, descripcion);
 };
 
 const galeria = document.getElementById('galeria');
