@@ -15,6 +15,15 @@ const carousel = (direccion) => {
     });
 
     if (direccion === 'atras'){
+      const primerSlideVisible = slidesVisibles;
+      const indexprimerSlideVisible = entradas.indexOf(primerSlideVisible);
+
+      if (entradas.length + 1 > indexprimerSlideVisible){
+        entradas[indexprimerSlideVisible + 1].target.scrollIntoView({
+          behavior: 'smooth',
+          inline: 'start',
+        });
+      }
 
     } else if (direccion === 'adelante') {
       const ultimaSlideVisible = slidesVisibles[slidesVisibles.length - 1];
