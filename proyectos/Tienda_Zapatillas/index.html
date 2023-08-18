@@ -9,7 +9,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap" rel="stylesheet" />
 		<link rel="stylesheet" href="public/bundle.css" />
 		<script src="public/bundle.js" defer></script>
-		<title>Página de Tienda</title>
+		<title>Tienda de zapatillas Converse</title>
 	</head>
 	<body>
 		<div class="contenedor">
@@ -55,6 +55,7 @@
 				</div>
 
 				<div class="producto" id="producto" data-producto-id="1">
+          <!-- Las imagenes del producto -->
 					<div class="producto__thumbs">
 						<img src="./img/thumbs/negro.jpg" alt="" class="producto__thumb-img" />
 						<img src="./img/thumbs/1.jpg" alt="" class="producto__thumb-img" />
@@ -266,6 +267,8 @@
 
 				<div class="mas-informacion" id="mas-informacion">
 					<div class="tabs">
+            <!-- Botones de abajo, las "tabs" -->
+            <!-- Aqui juagremos con la active-class, para que vaya pasando de id en id que seleccionameos -->
 						<button class="tabs__button tabs__button--active" data-tab="caracteristicas">
 							Caracteristicas
 						</button>
@@ -451,6 +454,7 @@
 			<a href="#" class="notificacion__link" data-accion="abrir-carrito">Ver carrito</a>
 		</div>
 
+    <!-- Todo el codigo del carrito, agregar, sumar, eliminar. -->
 		<div class="carrito" id="carrito">
 			<div class="carrito__overlay">
 				<div class="carrito__contenedor">
