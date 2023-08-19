@@ -1,1 +1,2 @@
-import './producto'
+import './producto';
+import './carrito';
