@@ -5,6 +5,11 @@ const thumbs = producto.querySelector('.producto__thumbs');
 // Accediendo propiedad color
 const propiedadColor = document.querySelector('#propiedad-color');
 
+// referencias de la cantidad
+const btnIncrementarCantidad = document.querySelector('#incrementar-cantidad');
+const btnDisminuirCantidad = document.querySelector('#disminuir-cantidad');
+const inputCantidad = document.querySelector('#cantidad');
+
 // Funcionalidad thumbails
 thumbs.addEventListener('click', (e) => {
   if (e.target.tagName === 'IMG'){
@@ -28,4 +33,16 @@ const cambioColor = propiedadColor.addEventListener('click', (e) => {
   if (e.target.tagName === 'INPUT') {
     productoImagen.src = `./img/tennis/${e.target.value}.jpg`;
   };
+});
+
+// btn Agregar cantidad
+const agregarCantidad = btnIncrementarCantidad.addEventListener('click', (e) => {
+  inputCantidad.value = parseInt(inputCantidad.value) + 1;
+});
+
+// btn Disminuir cantidad
+const disminuirCantidad = btnDisminuirCantidad.addEventListener('click', (e) => {
+  if (parseInt(inputCantidad.value) > 1) {
+    inputCantidad.value = parseInt(inputCantidad.value) - 1;
+  }
 });
