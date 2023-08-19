@@ -4,6 +4,10 @@ const producto = document.getElementById('producto');
 const productoImagen = producto.querySelector('.producto__imagen');
 const thumbs = producto.querySelector('.producto__thumbs');
 
+// Accediendo propiedad color
+const propiedadColor = document.querySelector('#propiedad-color');
+
+// Funcionalidad thumbails
 thumbs.addEventListener('click', (e) => {
   if (e.target.tagName === 'IMG'){
 
@@ -18,4 +22,10 @@ thumbs.addEventListener('click', (e) => {
 
     // Reemplaar por la imagen ppal
     productoImagen.src = `./img/tennis/${nombreImagen}`;
+  }});
+
+// Funcionalidad colores
+propiedadColor.addEventListener('click', (e) => {
+  if (e.target.tagName === 'INPUT') {
+    productoImagen.src = `./img/tennis/${e.target.value}.jpg`;
   }});
