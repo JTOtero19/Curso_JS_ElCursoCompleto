@@ -69,12 +69,16 @@ const renderCarrito =() => {
   carrito.forEach((productoCarrito) => {
     // codigo para obtener la ruta de la foto de la zapatilla y que se pueda sobreescribir
     // de esta clase quiero el primer objeto, pero quiero su ruta.
-    producto.querySelectorAll('.producto__thumb-img')[0].src;
-
+    let thumbSrc = producto.querySelectorAll('.producto__thumb-img')[0].src;
+    if (productoCarrito.color === 'rojo'){
+      thumbSrc = './img/thumbs/rojo.jpg';
+    } else if (productoCarrito.color === 'amarillo'){
+      thumbSrc = './img/thumbs/amarillo.jpg';
+    }
     // Creamos una plantilla del codigo HTML.
     const plantillaProducto = `
     <div class="carrito__producto-info">
-      <img src="./img/tennis/1.jpg" alt="" class="carrito__thumb" />
+      <img src="${thumbSrc}" alt="" class="carrito__thumb" />
       <div>
         <p class="carrito__producto-nombre">
           <span class="carrito__producto-cantidad">${productoCarrito.cantidad} x </span>${productoCarrito.nombre}
