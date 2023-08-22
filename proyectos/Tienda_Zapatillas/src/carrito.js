@@ -8,8 +8,8 @@ const ventanaCarrito = document.getElementById('carrito');
 const btnAgregarCarrito = document.getElementById('agregar-al-carrito');
 // accediendo a la variable del producto general, acceder al contenedor del producto
 const producto = document.getElementById('producto');
-// Arreglo vacio para gaurdar info de productos
-const carrito = [];
+// Arreglo vacio para gaurdar info de productos, let apra poder sobreescribirlo
+let carrito = [];
 // API formatear moneda Intl es la internacioanlizacion de monedas
 const formatearMoneda = new Intl.NumberFormat('es-MX', {style: 'currency', currency: 'CLP'})
 
@@ -149,5 +149,29 @@ btnAgregarCarrito.addEventListener ('click', (e) => {
       color: color,
       tamaño: tamaño,
     });
+  };
+});
+
+// Botones para eliminar productos del carrito
+ventanaCarrito.addEventListener('click', (e) => {
+  if (e.target.closest('button')?.dataset.accion === 'eliminar-item-carrito'){
+    // Contenga el contenedor del producto dentro del carrito
+    const producto = e.target.closest('.carrito__producto');
+
+    // Agrupamos los elementos dentro de un array para conocer su posicion
+    // No queremos trabajar con lista de Nodos, queiro un array
+    // Esto tomara los elementos de la lista y los pondra dentro de un array
+    const indexProducto = [...ventanaCarrito.querySelectorAll('.carrito__producto')].indexOf(producto);
+
+    // Queremos filtrar un elemento que tiene este index
+    // Filter nos permite devolver un arreglo que vamos a poder guardar
+    carrito = carrito.filter((item, index) => {
+      if (index !== indexProducto){
+        // Si el index es distinto al indexProducto, entonces lo guardamos en el carrito
+        return item;
+      };
+    });
+
+    renderCarrito();
   };
 });
