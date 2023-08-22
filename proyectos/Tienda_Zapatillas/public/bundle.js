@@ -65,7 +65,11 @@ const renderCarrito =() => {
   // Este modificador abriara la ventana.
   ventanaCarrito.classList.add('carrito--active');
 
-  // Productos del carrito
+  // Eliminar productos anteriores para construir el carrito desde cero
+  const productosAnteriores = ventanaCarrito.querySelectorAll('.carrito__producto');
+  productosAnteriores.forEach((producto) => producto.remove());
+
+  // Iteramos sobre cada producto del carrito y lo mostramos
   carrito.forEach((productoCarrito) => {
     // codigo para obtener la ruta de la foto de la zapatilla y que se pueda sobreescribir
     // de esta clase quiero el primer objeto, pero quiero su ruta.
