@@ -1,3 +1,6 @@
+// tarer base de datos
+import data from './data/productos';
+
 const botonesAbrirCarrito = document.querySelectorAll('[data-accion="abrir-carrito"]');
 const botonesCerrarCarrito = document.querySelectorAll('[data-accion="cerrar-carrito"]');
 const ventanaCarrito = document.getElementById('carrito');
@@ -7,6 +10,8 @@ const btnAgregarCarrito = document.getElementById('agregar-al-carrito');
 const producto = document.getElementById('producto');
 // Arreglo vacio para gaurdar info de productos
 const carrito = [];
+// API formatear moneda Intl es la internacioanlizacion de monedas
+const formatearMoneda = new Intl.NumberFormat('es-MX', {style: 'currency', currency: 'CLP'})
 
 /*
   Esta funcion se encargra de abrir el carrito y comprobar si hay o no productos en el carrito.
@@ -22,6 +27,14 @@ const renderCarrito =() => {
 
   // Iteramos sobre cada producto del carrito y lo mostramos
   carrito.forEach((productoCarrito) => {
+    // Obtenemos el precio del archivo de producto.js
+    // Cuando el id del item del carrito sea el mismo que alguno de la lista.
+    data.productos.forEach((productoBaseDatos) => {
+      if (productoBaseDatos.id === productoCarrito.id){
+        productoCarrito.precio = productoBaseDatos.precio;
+      };
+    });
+
     // codigo para obtener la ruta de la foto de la zapatilla y que se pueda sobreescribir
     // de esta clase quiero el primer objeto, pero quiero su ruta.
     let thumbSrc = producto.querySelectorAll('.producto__thumb-img')[0].src;
@@ -58,7 +71,7 @@ const renderCarrito =() => {
           />
         </svg>
       </button>
-      <p class="carrito__producto-precio">$500.00</p>
+      <p class="carrito__producto-precio">${formatearMoneda.format(productoCarrito.precio * productoCarrito.cantidad)}</p>
     </div>
     `;
     // Crear contenedor con toda la info del producto. Creamos un div.
