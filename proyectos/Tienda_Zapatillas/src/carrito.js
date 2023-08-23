@@ -135,6 +135,8 @@ btnAgregarCarrito.addEventListener ('click', (e) => {
   // Hay que buscar el input que este marcado
   const color = producto.querySelector('#propiedad-color input:checked').value;
   const tamaño = parseInt(producto.querySelector('#propiedad-tamaño input:checked').value);
+  // Agregando notificacion carrito
+  const notificacion = document.getElementById('notificacion');
 
   // Comprobar si hay algun producto igual en el carrito
   if (carrito.length > 0){
@@ -168,6 +170,24 @@ btnAgregarCarrito.addEventListener ('click', (e) => {
       tamaño: tamaño,
     });
   };
+
+  // Establecemos la ruta de la imagen que queremos mostrar
+  // .src para acceder a la ruta de la imagen
+  let thumbSrc = producto.querySelectorAll('.producto__thumb-img')[0].src;
+  if (color === 'rojo'){
+    thumbSrc = './img/thumbs/rojo.jpg';
+  } else if (color === 'amarillo'){
+    thumbSrc = './img/thumbs/amarillo.jpg';
+  };
+
+  // Me tome la imagen de la zapatilla seleccionada
+  notificacion.querySelector('img').src = thumbSrc;
+
+  // Para mostrarla le agregamos una clase
+  notificacion.classList.add('notificacion--active');
+
+  //Cerrar notificacion despues de 3 segundos
+  setTimeout(() => notificacion.classList.remove('notificacion--active'), 3000);
 });
 
 // Botones para eliminar productos del carrito
