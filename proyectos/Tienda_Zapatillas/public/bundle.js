@@ -56,7 +56,7 @@ var data = {
       descripcion: 'Tennis Converse unisex de calidad.',
       precio: 25000,
       colores: ['negro', 'rojo', 'amarillo'],
-      tamaños: ['1.5', '2', '2.5', '3', '4'],
+      tamaños: ['38', '38,5', '39', '39,5', '40', '41'],
     },
 
     // Para agregar otro producto agregamos esto mismo.
@@ -66,7 +66,7 @@ var data = {
       descripcion: 'Tennis Converse unisex de calidad pro.',
       precio: 50000,
       colores: ['negro', 'rojo', 'amarillo'],
-      tamaños: ['1.5', '2', '2.5', '3', '4'],
+      tamaños: ['38', '38,5', '39', '39,5', '40', '41'],
     }
   ]
 };
@@ -89,7 +89,7 @@ const formatearMoneda = new Intl.NumberFormat('es-MX', {style: 'currency', curre
   Esta funcion se encargra de abrir el carrito y comprobar si hay o no productos en el carrito.
   Tambien la usaremos en varios bloques.
 */
-const renderCarrito =() => {
+const renderCarrito = () => {
   // Este modificador abriara la ventana.
   ventanaCarrito.classList.add('carrito--active');
 
@@ -97,66 +97,83 @@ const renderCarrito =() => {
   const productosAnteriores = ventanaCarrito.querySelectorAll('.carrito__producto');
   productosAnteriores.forEach((producto) => producto.remove());
 
-  // Iteramos sobre cada producto del carrito y lo mostramos
-  carrito.forEach((productoCarrito) => {
-    // Obtenemos el precio del archivo de producto.js
-    // Cuando el id del item del carrito sea el mismo que alguno de la lista.
-    data.productos.forEach((productoBaseDatos) => {
-      if (productoBaseDatos.id === productoCarrito.id){
-        productoCarrito.precio = productoBaseDatos.precio;
-      }    });
+  // Total de los productos del carrito
+  let total = 0;
 
-    // codigo para obtener la ruta de la foto de la zapatilla y que se pueda sobreescribir
-    // de esta clase quiero el primer objeto, pero quiero su ruta.
-    let thumbSrc = producto.querySelectorAll('.producto__thumb-img')[0].src;
-    if (productoCarrito.color === 'rojo'){
-      thumbSrc = './img/thumbs/rojo.jpg';
-    } else if (productoCarrito.color === 'amarillo'){
-      thumbSrc = './img/thumbs/amarillo.jpg';
-    }
-    // Creamos una plantilla del codigo HTML.
-    const plantillaProducto = `
-    <div class="carrito__producto-info">
-      <img src="${thumbSrc}" alt="" class="carrito__thumb" />
-      <div>
-        <p class="carrito__producto-nombre">
-          <span class="carrito__producto-cantidad">${productoCarrito.cantidad} x </span>${productoCarrito.nombre}
-        </p>
-        <p class="carrito__producto-propiedades">
-          Tamaño:<span>${productoCarrito.tamaño}</span> Color:<span>${productoCarrito.color}</span>
-        </p>
+  // Comprobar si hay productos en el carrito
+  if (carrito.length < 1){
+    // Ponemos la clase del carrito vacio
+    ventanaCarrito.classList.add('carrito--vacio');
+  } else {
+    // Elminamos la calse del carrito vacio
+    ventanaCarrito.classList.remove('carrito--vacio');
+
+    // Iteramos sobre cada producto del carrito y lo mostramos
+    carrito.forEach((productoCarrito) => {
+      // Obtenemos el precio del archivo de producto.js
+      // Cuando el id del item del carrito sea el mismo que alguno de la lista.
+      data.productos.forEach((productoBaseDatos) => {
+        if (productoBaseDatos.id === productoCarrito.id){
+          productoCarrito.precio = productoBaseDatos.precio;
+
+          // Trabajamos agregando el total de los productos aqui
+          total += productoBaseDatos.precio * productoCarrito.cantidad;
+        }      });
+
+      // codigo para obtener la ruta de la foto de la zapatilla y que se pueda sobreescribir
+      // de esta clase quiero el primer objeto, pero quiero su ruta.
+      let thumbSrc = producto.querySelectorAll('.producto__thumb-img')[0].src;
+      if (productoCarrito.color === 'rojo'){
+        thumbSrc = './img/thumbs/rojo.jpg';
+      } else if (productoCarrito.color === 'amarillo'){
+        thumbSrc = './img/thumbs/amarillo.jpg';
+      }
+      // Creamos una plantilla del codigo HTML.
+      const plantillaProducto = `
+      <div class="carrito__producto-info">
+        <img src="${thumbSrc}" alt="" class="carrito__thumb" />
+        <div>
+          <p class="carrito__producto-nombre">
+            <span class="carrito__producto-cantidad">${productoCarrito.cantidad} x </span>${productoCarrito.nombre}
+          </p>
+          <p class="carrito__producto-propiedades">
+            Tamaño:<span>${productoCarrito.tamaño}</span> Color:<span>${productoCarrito.color}</span>
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="carrito__producto-contenedor-precio">
-      <button class="carrito__btn-eliminar-item" data-accion="eliminar-item-carrito">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"
-          />
-        </svg>
-      </button>
-      <p class="carrito__producto-precio">${formatearMoneda.format(productoCarrito.precio * productoCarrito.cantidad)}</p>
-    </div>
-    `;
-    // Crear contenedor con toda la info del producto. Creamos un div.
-    const itemCarrito = document.createElement('div');
+      <div class="carrito__producto-contenedor-precio">
+        <button class="carrito__btn-eliminar-item" data-accion="eliminar-item-carrito">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"
+            />
+          </svg>
+        </button>
+        <p class="carrito__producto-precio">${formatearMoneda.format(productoCarrito.precio * productoCarrito.cantidad)}</p>
+      </div>
+      `;
+      // Crear contenedor con toda la info del producto. Creamos un div.
+      const itemCarrito = document.createElement('div');
 
-    // Agregamos la clase al div
-    itemCarrito.classList.add('carrito__producto');
+      // Agregamos la clase al div
+      itemCarrito.classList.add('carrito__producto');
 
-    // Agregando plantilla al div
-    itemCarrito.innerHTML = plantillaProducto;
+      // Agregando plantilla al div
+      itemCarrito.innerHTML = plantillaProducto;
 
-    // Para agregarlo a nuestra pagina
-    // Esto es para agregar nuestro item al final de la lista.
-    ventanaCarrito.querySelector('.carrito__body').appendChild(itemCarrito);
-  });
+      // Para agregarlo a nuestra pagina
+      // Esto es para agregar nuestro item al final de la lista.
+      ventanaCarrito.querySelector('.carrito__body').appendChild(itemCarrito);
+    });
+  }
+  // Accederemos al elemento de total, para poner el total del carrito aqui
+  ventanaCarrito.querySelector('.carrito__total').innerText = formatearMoneda.format(total);
 };
 
 // Abrir carrito

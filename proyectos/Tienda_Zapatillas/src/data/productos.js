@@ -7,7 +7,7 @@ export default {
       descripcion: 'Tennis Converse unisex de calidad.',
       precio: 25000,
       colores: ['negro', 'rojo', 'amarillo'],
-      tamaños: ['1.5', '2', '2.5', '3', '4'],
+      tamaños: ['38', '38,5', '39', '39,5', '40', '41'],
     },
 
     // Para agregar otro producto agregamos esto mismo.
@@ -17,7 +17,7 @@ export default {
       descripcion: 'Tennis Converse unisex de calidad pro.',
       precio: 50000,
       colores: ['negro', 'rojo', 'amarillo'],
-      tamaños: ['1.5', '2', '2.5', '3', '4'],
+      tamaños: ['38', '38,5', '39', '39,5', '40', '41'],
     }
   ]
 }
