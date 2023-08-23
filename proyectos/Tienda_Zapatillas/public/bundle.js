@@ -277,3 +277,8 @@ ventanaCarrito.addEventListener('click', (e) => {
 
     renderCarrito();
   }});
+
+// Boton de enviar carrito o comprar
+ventanaCarrito.querySelector('#carrito__btn-comprar').addEventListener('click', (e) => {
+  console.log('Enviando peticion de compra...');
+});
