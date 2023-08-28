@@ -1,5 +1,6 @@
 import validarCantidad from "./validarCantidad";
 import marcarPaso from "./marcarPaso";
+import siguientePaso from "./siguientePaso";
 
 const formulario = document.getElementById('formulario');
 
@@ -27,6 +28,7 @@ btnFormulario.addEventListener('click', (e) => {
 
       // Nos valdiara el paso
       marcarPaso('cantidad');
+      siguientePaso();
     };
 
   };
