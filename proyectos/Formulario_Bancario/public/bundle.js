@@ -1,19 +1,51 @@
 'use strict';
 
-const formulario$1 = document.getElementById('formulario');
+const formulario$3 = document.getElementById('formulario');
 
 const validarCantidad = () => {
   // Aceptamos cualquier digito del 0-9 y un punto con decimales.
   const expRegularCantidad = /^\d+(\.\d+)?$/;
 
   // Acceder al inpiut de cantidad
-  const inputCantidad = formulario$1.cantidad;
+  const inputCantidad = formulario$3.cantidad;
 
   if (expRegularCantidad.test(inputCantidad.value)){
     inputCantidad.classList.remove('formulario__input--error');
     return true;
   } else {
     inputCantidad.classList.add('formulario__input--error');
+    return false;
+  }
+};
+
+const formulario$2 = document.getElementById('formulario');
+
+const validarNombre = () => {
+  // Puede incluir letras, espacios, acentos, ñ y sin caracteres especiales.
+  const expRegularNombre = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
+  const inputNombre = formulario$2['nombre-receptor'];
+
+  if (expRegularNombre.test(inputNombre.value)){
+    inputNombre.classList.remove('formulario__input--error');
+    return true;
+  } else {
+    inputNombre.classList.add('formulario__input--error');
+    return false;
+  }
+};
+
+const formulario$1 = document.getElementById('formulario');
+
+const validarCorreo = () => {
+  // Puede incluir letras, espacios, acentos, ñ y sin caracteres especiales.
+  const expRegularCorreo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+  const inputCorreo = formulario$1['correo-receptor'];
+
+  if (expRegularCorreo.test(inputCorreo.value)){
+    inputCorreo.classList.remove('formulario__input--error');
+    return true;
+  } else {
+    inputCorreo.classList.add('formulario__input--error');
     return false;
   }
 };
@@ -97,6 +129,10 @@ formulario.addEventListener('keyup', (e) => {
   if (e.target.tagName === 'INPUT'){
     if (e.target.id === 'cantidad'){
       validarCantidad();
+    } else if (e.target.input === 'nombre-receptor'){
+      validarNombre();
+    } else if (e.target.input === 'correo-receptor'){
+      validarCorreo();
     }  }});
 
 // Segunda validacion, al apretar el boton de enviar.
@@ -115,5 +151,14 @@ btnFormulario.addEventListener('click', (e) => {
       marcarPaso('cantidad');
       siguientePaso();
     }
+  } else if (pasoActual === 'datos'){
+    if (validarNombre() && validarCorreo()){
+
+      // Nos valdiara el paso
+      marcarPaso('datos');
+      siguientePaso();
+    }  } else if (pasoActual === 'metodo'){
+    marcarPaso('metodo');
+    siguientePaso();
   }});
 //# sourceMappingURL=bundle.js.map
