@@ -5,7 +5,7 @@ import siguientePaso from "./siguientePaso";
 const formulario = document.getElementById('formulario');
 
 // reiniciando el scroll al cargar el formulario
-formulario,querySelector('.formulario__body').scrollLeft = 0;
+formulario.querySelector('.formulario__body').scrollLeft = 0;
 
 // Primera valdiacion, cuando el usuario escribe
 formulario.addEventListener('keyup', (e) => {
