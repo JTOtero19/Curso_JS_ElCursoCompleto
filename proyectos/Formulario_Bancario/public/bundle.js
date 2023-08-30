@@ -190,5 +190,18 @@ btnFormulario.addEventListener('click', (e) => {
       btnFormulario.classList.remove('formulario__btn--disabled');
     }, 4000);
 
+  } else if (pasoActual === 'confirmacion' && !btnFormulario.matches('.formulario__btn--disabled')){
+    // Aqui se haria una petcion al servidor, una redireccion, etc
+
+    // cambiar texto de transferir a transfiriendo
+    btnFormulario.querySelector('span').innerText = 'Transfiriendo';
+
+    // Agregamos la clase que deshabilita el boton
+    btnFormulario.classList.add('formulario__btn--disabled');
+
+    setTimeout(() => {
+      formulario.classList.add('formulario--hidden');
+      document.getElementById('alerta').classList.add('alerta--active');
+    }, 4000);
   }});
 //# sourceMappingURL=bundle.js.map
