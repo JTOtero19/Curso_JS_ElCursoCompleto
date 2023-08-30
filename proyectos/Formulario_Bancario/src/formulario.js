@@ -3,6 +3,7 @@ import validarNombre from "./validaciones/validarNombre";
 import validarCorreo from "./validaciones/validarCorreo";
 import marcarPaso from "./marcarPaso";
 import siguientePaso from "./siguientePaso";
+import lineaPasos from "./lineaPasos";
 
 const formulario = document.getElementById('formulario');
 

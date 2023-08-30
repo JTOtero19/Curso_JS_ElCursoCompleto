@@ -1,5 +1,7 @@
 'use strict';
 
+require('../../../../../../../.lineaPasos');
+
 const formulario$3 = document.getElementById('formulario');
 
 const validarCantidad = () => {
@@ -56,67 +58,81 @@ const marcarPaso = (paso) => {
     .classList.add('linea-pasos__paso-check--cheked');
 };
 
-// const siguientePaso = () => {
+const siguientePaso = () => {
 
-//   // Array donde guardaremos la posicion del index
-//   const pasos = [...document.querySelectorAll('.linea-pasos__paso')];
+  // Array donde guardaremos la posicion del index
+  const pasos = [...document.querySelectorAll('.linea-pasos__paso')];
 
-//   // Obtener el paso activo donde nos encotnramos
-//   const pasoActivo = document.querySelector('.linea-pasos__paso-check--active').closest('.linea-pasos__paso');
+  // Obtener el paso activo donde nos encotnramos
+  const pasoActivo = document.querySelector('.linea-pasos__paso-check--active').closest('.linea-pasos__paso');
 
-//   // Obtener el index del paso activo
-//   const indexPasoActivo = pasos.indexOf(pasoActivo);
+  // Obtener el index del paso activo
+  const indexPasoActivo = pasos.indexOf(pasoActivo);
 
-//   // Le restamos el 1 ya que estamos trabajando con index, es decir parte en 0, no en 1
-//   if (indexPasoActivo < pasos.length - 1){
-//     // Eliminamos la clase de paso activo
-//     pasoActivo.querySelector('span').classList.remove('.linea-pasos__paso-check--active');
+  // Le restamos el 1 ya que estamos trabajando con index, es decir parte en 0, no en 1
+  if (indexPasoActivo < pasos.length - 1){
+    // Eliminamos la clase de paso activo
+    pasoActivo.querySelector('span').classList.remove('linea-pasos__paso-check--active');
 
-//     // Ponemos la clase de paso activo al siguiente elemento
-//     pasos[indexPasoActivo + 1].querySelector('span').classList.add('.linea-pasos__paso-check--active');
+    // Ponemos la clase de paso activo al siguiente elemento
+    pasos[indexPasoActivo + 1].querySelector('span').classList.add('linea-pasos__paso-check--active');
 
-//     const id = pasos[indexPasoActivo + 1].dataset.paso;
-//     document.querySelector(`.formulario__body [data-paso="${id}"]`).scrollIntoView({
-//       inline: 'start',
-//       behavior: 'smooth',
-//     });
+    const id = pasos[indexPasoActivo + 1].dataset.paso;
+    document.querySelector(`.formulario__body [data-paso="${id}"]`).scrollIntoView({
+      inline: 'start',
+      behavior: 'smooth',
+    });
 
-//   };
-
-// };
-
-// export default siguientePaso;
+  }
+};
 
 
 /**
  * Funcion que navega al siguiente paso.
  */
-const siguientePaso = () => {
-	// Creamos un arreglo con los pasos.
-	const pasos = [...document.querySelectorAll('.linea-pasos__paso')];
+// const siguientePaso = () => {
+// 	// Creamos un arreglo con los pasos.
+// 	const pasos = [...document.querySelectorAll('.linea-pasos__paso')];
 
-	// Obtenemos el paso activo.
-	const pasoActivo = document.querySelector('.linea-pasos__paso-check--active').closest('.linea-pasos__paso');
+// 	// Obtenemos el paso activo.
+// 	const pasoActivo = document.querySelector('.linea-pasos__paso-check--active').closest('.linea-pasos__paso');
 
-	// Obtenemos el index del paso activo.
-	const indexPasoActivo = pasos.indexOf(pasoActivo);
+// 	// Obtenemos el index del paso activo.
+// 	const indexPasoActivo = pasos.indexOf(pasoActivo);
 
-	// Comprobamos si hay mas pasos.
-	if (indexPasoActivo < pasos.length - 1) {
-		// Eliminamos la clase de paso activo.
-		pasoActivo.querySelector('span').classList.remove('linea-pasos__paso-check--active');
-		// Ponemos la clase de paso activo al siguiente elemento.
-		pasos[indexPasoActivo + 1].querySelector('span').classList.add('linea-pasos__paso-check--active');
+// 	// Comprobamos si hay mas pasos.
+// 	if (indexPasoActivo < pasos.length - 1) {
+// 		// Eliminamos la clase de paso activo.
+// 		pasoActivo.querySelector('span').classList.remove('linea-pasos__paso-check--active');
+// 		// Ponemos la clase de paso activo al siguiente elemento.
+// 		pasos[indexPasoActivo + 1].querySelector('span').classList.add('linea-pasos__paso-check--active');
 
-		// Mostramos el siguiente elemento.
-		const id = pasos[indexPasoActivo + 1].dataset.paso;
+// 		// Mostramos el siguiente elemento.
+// 		const id = pasos[indexPasoActivo + 1].dataset.paso;
 
-		document.querySelector(`.formulario__body [data-paso="${id}"]`).scrollIntoView({
-			inline: 'start',
-			behavior: 'smooth',
-		});
-	}
-};
+// 		document.querySelector(`.formulario__body [data-paso="${id}"]`).scrollIntoView({
+// 			inline: 'start',
+// 			behavior: 'smooth',
+// 		});
+// 	}
+// };
+
+const linea = document.getElementById('linea-pasos');
+linea.addEventListener('click', (e) => {
+  if (!e.target.closest('.linea-pasos__paso')){
+
+    // Detectar paso actual
+    const pasoActual = document.querySelector('.linea-pasos__paso-check--active').closest('.linea-pasos__paso').dataset.paso;
+
+    // Validamos el campo actual
+    if (pasoActual === 'cantidad'){
+        if (!validarCantidad()) return false;
+    } else if(pasoActual === 'datos') {
+      if (!validarNombre() || !validarCorreo()) return false;
+    }    }
+    // Si el navegador lee esta linea, saldra de la ejecucion del boton, por ende el codigo no se ejecutara
+    return false;
+});
 
 const formulario = document.getElementById('formulario');
 
