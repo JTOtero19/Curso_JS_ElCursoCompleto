@@ -18,6 +18,16 @@ linea.addEventListener('click', (e) => {
     };
     };
 
+    // Saber si hace click en el span o svg, cual tiene tal clase.
+    // Paso al que queremos navegar
+    const pasoANavegar = e.target.closest('.linea-pasos__paso');
+
+    // Solo queremos poder dar click a los que tienen palomita
+    if (pasoANavegar.querySelector('.linea-pasos__paso-check--checked')){
+      
+    };
+
+
     // Si el navegador lee esta linea, saldra de la ejecucion del boton, por ende el codigo no se ejecutara
     return false;
 });
