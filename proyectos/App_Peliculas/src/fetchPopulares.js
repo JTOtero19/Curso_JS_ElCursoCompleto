@@ -1,14 +1,26 @@
+require('dotenv').config();
+
 const fetchPopulares = async() => {
   // Nos permite pasarle una direccion donde queremos hacerle la peticion
   // const url = 'https://api.themoviedb.org/3/movie/popular?api-key=63eeaec5b719dce16fe9c80c8594e9fc&language=es-MX&page=1';
   const url = 'https://api.themoviedb.org/3/movie/popular?language=es-MX&page=1';
+  const API_TOKEN = process.env.API_TOKEN;
+
   const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2M2VlYWVjNWI3MTlkY2UxNmZlOWM4MGM4NTk0ZTlmYyIsInN1YiI6IjY1MTFjYjYzM2E0YTEyMDExY2Y0NjE0NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.s9PRkpARfez-NrZspn4567uRtor13shKAHyIzlVyxmc'
+      Authorization: `Bearer ${API_KEY}`
     }
   };
+
+  // const options = {
+  //   method: 'GET',
+  //   headers: {
+  //     accept: 'application/json',
+  //     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2M2VlYWVjNWI3MTlkY2UxNmZlOWM4MGM4NTk0ZTlmYyIsInN1YiI6IjY1MTFjYjYzM2E0YTEyMDExY2Y0NjE0NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.s9PRkpARfez-NrZspn4567uRtor13shKAHyIzlVyxmc'
+  //   }
+  // };
 
   // Esto nos permite pasarle el codigo que queremos
   try {
